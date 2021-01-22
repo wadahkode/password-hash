@@ -1,12 +1,17 @@
 {
   "name": "password-hash",
   "version": "1.0.0",
-  "description": "",
+  "description": "generate sha512",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./tests/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "password",
+    "hash",
+    "crypt",
+    "verify"
+  ],
+  "author": "wadahkode <mvp.dedefilaras@gmail.com>",
+  "license": "MIT"
 }

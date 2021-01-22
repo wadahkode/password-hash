@@ -1,5 +1,6 @@
-const {hash, verify} = require('../');
+const password = require('../');
 
-hash('1234567890');
+const {salt, hashedPassword} = password.hash('1234567890');
+const result = password.verify('1234567890', salt);
 
-console.log(verify('1234567890'));
+console.log(result, hashedPassword);

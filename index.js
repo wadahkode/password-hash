@@ -23,7 +23,7 @@ password = {
   hasher: function(password, salt) {
     let hash = crypt.createHmac('sha512', salt);
     hash.update(password);
-    let value = hash.digest('hex');
+    let value = 'sha512:' + hash.digest('hex');
     
     this.salt = salt;
     this.hashedPassword = value;
@@ -31,9 +31,10 @@ password = {
     return this;
   },
   
-  verify: function(str) {
-    let data = password.hasher(str, password.salt);
-    
+  salt: undefined,
+  
+  verify: function(str, salt) {
+    let data = password.hasher(str, salt);
     return (data.hashedPassword == password.hashedPassword) ? true : false;
   }
 };
