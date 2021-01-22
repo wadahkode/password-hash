@@ -28,8 +28,6 @@ password = {
     this.salt = salt;
     this.hashedPassword = value;
     
-    console.log(salt, value);
-    
     return this;
   },
   
