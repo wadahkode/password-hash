@@ -28,14 +28,17 @@ password = {
     this.salt = salt;
     this.hashedPassword = value;
     
-    return this;
+    return {
+      salt: salt,
+      hashedPassword: value
+    };
   },
   
   salt: undefined,
   
-  verify: function(str, salt) {
+  verify: function(str, hash) {
     // for testing before store in database
-    let hash = {
+    hash = {
       salt: "cebec50e6dfe",
       hashedPassword: "sha512:90844403b749bd23d83dfda7b0d729efbf0c4a0d8d12ae6d9c457f3e8c8adec99bcbc9a1ddf6847646aa906dd4849e4f58d0b07b9ac3ba5ca3e0beffe48867cb"
     };
