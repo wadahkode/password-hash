@@ -5,38 +5,36 @@ const crypt = require('crypto');
  * @author wadahkode <mvp.dedefilaras@gmail.com>
  * @since version 1.0.0
  */
-let salt = "";
-
-const password = {
-  hash: (str="", max=12) => {
-    try {
-      if (max > 12) {
-        throw new Error('panjang password maksimal 12!');
-      } else {
-        salt = crypt.randomBytes(Math.ceil(max / 2)).toString('hex').slice(0, max);
-        
-        return generate(str);
-      }
-    } catch (e) {
-      console.log('warning: %s', e.message);
+const generateSalt = (max=12) => {
+  try {
+    if (max > 12) {
+      throw new Error('panjang password maksimal 12!');
+    } else {
+      return crypt.randomBytes(Math.ceil(max / 2)).toString('hex').slice(0, max);
     }
-  },
-  
-  verify: (str, hash) => {
-    return (generate(str) == hash) ? true : false;
+  } catch (e) {
+    console.log('warning: %s', e.message);
   }
 };
-
-const generate = (password) => {
+  
+const hash = (password, salt) => {
   let hash = crypt.createHmac('sha512', salt);
   hash.update(password);
   let value = 'sha512:' + hash.digest('hex');
   
-  // return {
-  //   salt: salt,
-  //   hashedPassword: value
-  // };
-  return value;
+  return {
+    salt: salt,
+    hashedPassword: value
+  };
 };
 
-module.exports = password;
+const verify = (password, data) => {
+  let gen = hash(password, data.salt);
+  return (gen.hashedPassword == data.hashedPassword) ? true : false;
+};
+
+module.exports = {
+  generateSalt,
+  hash,
+  verify
+};

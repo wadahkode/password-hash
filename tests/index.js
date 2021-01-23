@@ -1,8 +1,8 @@
 const password = require('../');
 
-const hashedPassword = password.hash('1234567890');
-const sampleTrue = password.verify('1234567890', hashedPassword);
-const sampleFalse = password.verify('123456', hashedPassword);
+let salt = password.generateSalt(12);
+let hashedPassword = password.hash('abc', salt);
 
-console.log(sampleTrue, hashedPassword);
-console.log(sampleFalse, hashedPassword);
+console.log(JSON.stringify(hashedPassword).length);
+console.log(password.verify('abcd', hashedPassword));
+console.log(password.verify('abc', hashedPassword));
