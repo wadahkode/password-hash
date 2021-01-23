@@ -10,13 +10,14 @@
   <h1>Password hash</h1>
   <script src="https://embed.runkit.com" data-element-id="demo"></script>
   <div id="demo">// password hash
-    var passwordHash = require('@wadahkode/password-hash');
-    
-    let salt = passwordHash.generateSalt(10);
-    let hashedPassword = passwordHash.hash('abc', salt);
-    
-    console.log(passwordHash.verify('abcd', hashedPassword));
-    console.log(passwordHash.verify('abc', hashedPassword));
+  var passwordHash = require('@wadahkode/password-hash');
+  
+  // uncomment this
+  // let salt = passwordHash.generateSalt(10);
+  // let hashedPassword = passwordHash.hash('abc', salt);
+  
+  // console.log(passwordHash.verify('abcd', hashedPassword));
+  // console.log(passwordHash.verify('abc', hashedPassword));
     
   </div>
 </body>
